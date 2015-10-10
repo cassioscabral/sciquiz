@@ -24,3 +24,4 @@ accounts-facebook
 service-configuration
 cosmos:browserify
 meteorhacks:npm
+fourseven:scss
