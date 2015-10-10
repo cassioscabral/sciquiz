@@ -21,20 +21,7 @@ SciquizLayout = React.createClass({
     },
   render() {
     return  <div>
-        <AppCanvas>
-            <AccountsUIWrapper />
-
-            <AppBar title="Sciquiz"/>
-            <div style={{padding: '80px',}}>
-                <RaisedButton primary={true} label="Tap" />
-                <br/>
-                <DatePicker hintText="Portrait Dialog" />
-                <br/>
-                <DatePicker
-                    hintText="Landscape Dialog"
-                    mode="landscape"/>
-            </div>
-        </AppCanvas>
+        <AccountsUIWrapper />
         <div className="navigation">
         <a href="/">Home</a>
         </div>
