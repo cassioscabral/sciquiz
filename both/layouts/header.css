@@ -1,0 +1,101 @@
+@import "normalize";
+
+header#header {
+  height: 50px;
+  background-color: purple;
+  padding: 0;
+  position: relative;
+}
+
+header#header button#openMenu {
+  display: inline-block;
+  border: none;
+  background-color: #B948B9;
+  width: 70px;
+  height: inherit;
+}
+
+header#header button#openMenu:focus {
+  outline: none;
+}
+
+header#header button#openMenu span {
+  background-color: white;
+  display: block;
+  height: 4px;
+  width: 44px;
+  margin-top: 9px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+header#header button#openMenu span:first-child {
+  margin-top: 0;
+}
+
+header#header nav#left {
+  background-color: #B948B9;
+  width: 280px;
+  position: absolute;
+  top: 50px;
+  right: 100%;
+  -webkit-transition: .2s;
+  transition: .2s;
+}
+
+header#header nav#left.isOpen {
+  right: calc(100% - 280px);
+  right: -webkit-calc(100% - 280px);
+}
+
+header#header nav#left ul {
+  list-style: none;
+  padding: 15px;
+  margin: 0;
+}
+
+header#header nav#left ul li {
+  display: block;
+  line-height: 40px;
+}
+
+header#header nav#left ul li a {
+  font-family: 'Titillium Web', sans-serif;
+  color: white;
+  font-weight: 700;
+  font-size: 22px;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 3px;
+}
+
+header#header nav#left ul li a:hover {
+  text-decoration: none;
+}
+
+header#header nav#right {
+  float: right;
+}
+
+header#header nav#right ul {
+  display: block;
+  list-style: none;
+  margin: 0;
+}
+
+header#header nav#right ul li {
+  display: inline-block;
+}
+
+header#header nav#right ul li a {
+  font-family: 'Titillium Web', sans-serif;
+  color: white;
+  font-weight: 400;
+  font-size: 18px;
+  text-transform: capitalize;
+  text-decoration: none;
+  display: inline-block;
+  padding: 0 15px;
+  line-height: 50px;
+  background-color: #B948B9;
+}

@@ -1,0 +1,9 @@
+body, html {
+	margin: 0;
+	padding: 0;
+}
+
+main.content {
+	position: relative;
+  padding-bottom: 180px;
+}
