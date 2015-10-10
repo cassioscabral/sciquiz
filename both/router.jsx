@@ -14,3 +14,12 @@ FlowRouter.route('/quiz/:_id', {
         });
     }
 });
+
+FlowRouter.route('/stats/:_id', {
+    name: 'stats',
+    action: function(params) {
+        ReactLayout.render(SciquizLayout, {
+            content: <Stats _id={params._id} />
+        });
+    }
+});
