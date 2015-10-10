@@ -126,4 +126,34 @@ if(Meteor.isServer) {
             Questions.findOne(question4_1),
         ]
     });
+
+    masculine = Answers.insert({
+        title: "Masculine",
+        value: 0
+    });
+
+    feminine = Answers.insert({
+        title: "Feminine",
+        value: 1
+    });
+
+    sex = Questions.insert({
+        title:'SEX',
+        answers:[
+            Answers.findOne(masculine),
+            Answers.findOne(feminine)
+        ]
+    });
+
+    Quizzes.insert({
+        title: 'Sex',
+        name: 'sex',
+        type: 'scoredQuiz',
+        maxScore: 0,
+        users:{},
+        questions:[
+            Questions.findOne(sex),
+        ]
+    });
+
 }
