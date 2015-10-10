@@ -29,3 +29,5 @@ fourseven:scss
 
 npm-container
 izzilab:material-ui
+kadira:react-layout
+kadira:flow-router
