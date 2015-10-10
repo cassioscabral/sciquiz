@@ -29,3 +29,5 @@ fourseven:scss
 
 npm-container
 izzilab:material-ui
+d3js:d3
+momentjs:moment
