@@ -9,6 +9,7 @@ QuizPage = React.createClass({
         return <form>
             <a href="/">Back</a>
             <h3>{this.data.quiz.title}</h3>
+            <p>Previous result - {this.data.quiz.result[this.data.quiz.users[Meteor.userId()]]}</p>
             {this.data.quiz.questions.map(function(question) {
                 return <div ref={question._id}>
                     <p>{question.title}</p>
@@ -41,13 +42,13 @@ QuizPage = React.createClass({
         score = this.sumScore();
         quizID = this.data.quiz._id;
         userId = Meteor.userId();
-        previusValue = this.data.quiz.users[userId];
+        previousValue = this.data.quiz.users[userId];
         var setModifier = { $set: {} };
         setModifier.$set['users.' + userId] = score;
         Quizzes.update(quizID,setModifier);
 
-        if (previusValue){
-            score = score - previusValue;
+        if (previousValue){
+            score = score - previousValue;
         }
 
         Quizzes.update(quizID,{ $inc: { maxScore: score} });
