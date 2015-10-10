@@ -118,6 +118,21 @@ if(Meteor.isServer) {
         name: 'MotivationalDeficit',
         type: 'scoredQuiz',
         maxScore: 0,
+        result: {
+            0: "below average",
+            1: "below average",
+            2: "below average",
+            3: "average",
+            4: "average",
+            5: "average",
+            6: "average",
+            7: "average",
+            8: "above average",
+            9: "above average",
+            10: "above average",
+            11: "above average",
+            12: "above average"
+        },
         users:{},
         questions:[
             Questions.findOne(question1_1),
@@ -149,6 +164,10 @@ if(Meteor.isServer) {
         title: 'Sex',
         name: 'sex',
         type: 'scoredQuiz',
+        result: {
+            0: "Masculine",
+            1: "Feminine",
+        },
         maxScore: 0,
         users:{},
         questions:[
