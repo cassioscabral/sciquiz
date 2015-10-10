@@ -1,6 +1,6 @@
 Quizzes = new Meteor.Collection('quizzes');
 Questions = new Meteor.Collection('questions');
-Answers =  new Meteor.Collection('answers');
+Answers = new Meteor.Collection('answers');
 
 if(Meteor.isServer) {
     // cleanning
@@ -117,6 +117,8 @@ if(Meteor.isServer) {
         title: 'Motivational Deficit',
         name: 'MotivationalDeficit',
         type: 'scoredQuiz',
+        maxScore: 0,
+        users:{},
         questions:[
             Questions.findOne(question1_1),
             Questions.findOne(question2_1),
