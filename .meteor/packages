@@ -25,3 +25,6 @@ service-configuration
 cosmos:browserify
 meteorhacks:npm
 fourseven:scss
+
+
+npm-container
