@@ -81,8 +81,9 @@ MultilineChart = React.createClass({
 
         lSpace = WIDTH/dataGroup.length;
 
-
+        stroke = 2;
         dataGroup.forEach(function(d, i) {
+
             vis.append("text")
             .attr("x", (lSpace / 2) + i * lSpace)
             .attr("y", HEIGHT)
@@ -104,9 +105,11 @@ MultilineChart = React.createClass({
                 .attr('stroke', function(d, j) {
                     return "hsl(" + Math.random() * 360 + ",100%,50%)";
                 })
-                .attr('stroke-width', 2)
+                .attr('stroke-width', stroke)
                 .attr('id', 'line_' + d.key)
                 .attr('fill', 'none');
+
+            stroke += stroke + 1;
         });
     },
     render () {
