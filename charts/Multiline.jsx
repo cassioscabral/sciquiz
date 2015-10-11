@@ -19,75 +19,96 @@ MultilineChart = React.createClass({
         };
     },
     updateChart: function(props) {
-	    var data = props.data;
+        var data = props.data;
+        MARGINS = {
+            top: 50,
+            right: 20,
+            bottom: 50,
+            left: 50
+        };
+        WIDTH = props.width;
+        HEIGHT = props.height;
+        x = props.x;
+        y = props.y;
+        group = props.group;
 
-	    var max = _.max(_.pluck(data, "qty"));
-  		var yScale = d3.scale.linear()
-	      .domain([0, max])
-	      .range([0, props.height - 35]);
+        xScale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([d3.min(data, function(d) {
+            return parseInt(d[x]);
+        }), d3.max(data, function(d) {
+            return parseInt(d[x]);
+        })]);
 
-	    var xScale = d3.scale.ordinal()
-	      .domain(d3.range(data.length))
-	      .rangeRoundBands([0, props.width], 0.05);
+        yScale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([d3.min(data, function(d) {
+            return parseInt(d[y]);
+        }), d3.max(data, function(d) {
+            return parseInt(d[y]);
+        })]);
 
-	    var svg = d3.select("svg");
+        xAxis = d3.svg.axis()
+            .scale(xScale);
 
-    	var bars = svg.selectAll("rect").data(data);
-    	bars.enter()
-	        .append("rect")
-	        .attr("fill", "orange");
+        yAxis = d3.svg.axis()
+            .scale(yScale)
+            .orient("left");
 
-	    bars.transition()
-	    	.duration(1000)
-	    	.attr("x", function(d, i) {
-	          return xScale(i);
-	        })
-	        .attr("y", function(d, i) {
-	          return props.height - yScale(d.qty) - 20;
-	        })
-	        .attr("width", xScale.rangeBand())
-	        .attr("height", function(d, i) {
-	          return yScale(d.qty);
-	        });
+        var vis = d3.select("svg");
 
-	    bars.exit()
-	        .remove();
 
-	    var qtyLabel = svg.selectAll(".qtyLabel").data(data);
-	    qtyLabel.enter()
-	    	  .append("text")
-	    	  .attr("class", "qtyLabel")
-	    	  .style("font-weight", "bold")
-	    	  .attr("text-anchor", "middle");
+        vis.append("svg:g")
+        .attr("class","axis")
+        .attr("transform", "translate(0," + (HEIGHT - MARGINS.bottom) + ")")
+        .call(xAxis);
 
-	    qtyLabel.transition()
-	    	.duration(1000)
-			.attr("x", function(d, i) {
-				return xScale(i) + xScale.rangeBand()/2;
-			})
-			.attr("y", function(d, i) {
-				return props.height - yScale(d.qty) - 25;
-			})
-			.text(function(d, i) {
-				return d.qty;
-			});
+        vis.append("svg:g")
+        .attr("class","axis")
+        .attr("transform", "translate(" + (MARGINS.left) + ",0)")
+        .call(yAxis);
 
-	   	var xLabel = svg.selectAll(".xLabel").data(data);
-	    xLabel.enter()
-	    	  .append("text")
-	    	  .attr("class", "xLabel");
+        var lineGen = d3.svg.line()
+            .x(function(d) {
+                return xScale(d[x]);
+            })
+            .y(function(d) {
+                return yScale(d[y]);
+            });
+            // .interpolate("basis");
 
-	    xLabel.text(function(d, i) {
-	    	  	return d.xLabel;
-	    	  })
-	    	  .attr("text-anchor", "middle")
-	    	  .attr("x", function(d, i) {
-	    	  	return xScale(i) + xScale.rangeBand()/2;
-	    	  })
-	    	  .attr("y", function(d, i) {
-	    	  	return props.height - 5;
-	    	  });
-	},
+        var dataGroup = d3.nest()
+        .key(function(d) {
+            return d[group];
+        })
+        .entries(data);
+
+        lSpace = WIDTH/dataGroup.length;
+
+
+        dataGroup.forEach(function(d, i) {
+            vis.append("text")
+            .attr("x", (lSpace / 2) + i * lSpace)
+            .attr("y", HEIGHT)
+            .style("fill", "black")
+            .style("cursor", "pointer")
+            .attr("class", "legend")
+            .text(d.key)
+            .on('click', function() {
+                var active = d.active ? false : true;
+                var opacity = active ? 0 : 1;
+
+                d3.select("#line_" + d.key).style("opacity", opacity);
+
+                d.active = active;
+            });
+
+            vis.append('svg:path')
+                .attr('d', lineGen(d.values))
+                .attr('stroke', function(d, j) {
+                    return "hsl(" + Math.random() * 360 + ",100%,50%)";
+                })
+                .attr('stroke-width', 2)
+                .attr('id', 'line_' + d.key)
+                .attr('fill', 'none');
+        });
+    },
     render () {
         return (
             <div className="multiline-chart"></div>
