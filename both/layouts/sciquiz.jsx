@@ -1,32 +1,14 @@
-injectTapEventPlugin();
-
-var {
-    AppCanvas,
-    AppBar,
-    Styles,
-    RaisedButton,
-    DatePicker
-    } = MUI;
-var { ThemeManager, LightRawTheme } = Styles;
-
 SciquizLayout = React.createClass({
-    childContextTypes: {
-        muiTheme: React.PropTypes.object
-    },
+    render() {
 
-    getChildContext() {
-        return {
-            muiTheme: ThemeManager.getMuiTheme(LightRawTheme)
-        };
-    },
-  render() {
-    return  <div className="container">
+    return (<main id="main">
+                <HeaderComponent />
 
-        <div className="navigation">
-        <a href="/">Home</a>
-        </div>
-        <h1> My Blog </h1>
-        {this.props.content}
-    </div>;
-  }
+                <section id="content">
+                    {this.props.content}
+                </section>
+
+                <FooterComponent />
+            </main>);
+    }
 });

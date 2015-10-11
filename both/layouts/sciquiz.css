@@ -1,0 +1,57 @@
+body, html {
+	margin: 0;
+	padding: 0;
+  height: 100%;
+}
+
+section#content {
+	position: relative;
+  min-height: 100%;
+  padding-bottom: 180px;
+  padding-top: 50px;
+}
+
+.container {
+  width: 100%;
+  max-width: 960px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+header.title {
+  position: relative;
+}
+
+header.title h1 {
+  font-family: 'Titillium Web', sans-serif;
+  font-size: 40px;
+  font-weight: 900;
+  color: #333;
+  background-color: white;
+  display: inline-block;
+  padding-right: 15px;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  header.title h1 {
+    font-size: 35px;
+    line-height: 35px;
+  }
+}
+
+header.title:after {
+  content: "";
+  display: block;
+  height: 2.5px;
+  width: 100%;
+  background-color: purple;
+  position: absolute;
+  top: -webkit-calc(50% - 1.25px);
+  top: calc(50% - 1.25px);
+  right: 0;
+  z-index: 0;
+}
