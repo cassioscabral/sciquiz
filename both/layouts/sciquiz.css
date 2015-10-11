@@ -1,3 +1,13 @@
+@-webkit-keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+} 
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
 body, html {
 	margin: 0;
 	padding: 0;
@@ -18,6 +28,9 @@ section#content {
   margin-left: auto;
   padding-left: 15px;
   padding-right: 15px;
+  transition: .5s;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
 }
 
 header.title {

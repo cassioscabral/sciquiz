@@ -15,11 +15,29 @@ FlowRouter.route('/quiz/:_id', {
     }
 });
 
+FlowRouter.route('/statistics', {
+    name: 'statistics',
+    action: function(params) {
+        ReactLayout.render(SciquizLayout, {
+            content: <StatsList />
+        });
+    }
+});
+
 FlowRouter.route('/stats/:_id', {
     name: 'stats',
     action: function(params) {
         ReactLayout.render(SciquizLayout, {
             content: <Stats _id={params._id} />
+        });
+    }
+});
+
+FlowRouter.route('/about', {
+    name: 'about',
+    action: function(params) {
+        ReactLayout.render(SciquizLayout, {
+            content: <AboutPage />
         });
     }
 });
