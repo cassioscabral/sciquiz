@@ -8,8 +8,8 @@ QuizList = React.createClass({
     getList() {
         return <ul id="quiz-list">
                {this.data.quizzes.map(function(quiz) {
-                            var path = FlowRouter.path('quiz', {_id: quiz._id})
-                    return <li key={quiz._id}><a href={path}>{quiz.title}</a></li>
+                    var path = FlowRouter.path('quiz', {_id: quiz._id});
+                    return <li key={quiz._id}><a href={path}>{quiz.title}</a></li>;
                 })}
                 </ul>;
     },

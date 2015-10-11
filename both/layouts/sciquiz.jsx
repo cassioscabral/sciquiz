@@ -4,6 +4,7 @@ SciquizLayout = React.createClass({
     return (<main id="main">
                 <HeaderComponent />
 
+
                 <section id="content">
                     {this.props.content}
                 </section>

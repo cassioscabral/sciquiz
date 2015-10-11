@@ -9,9 +9,13 @@ FlowRouter.route("/", {
 FlowRouter.route('/quiz/:_id', {
     name: 'quiz',
     action: function(params) {
-        ReactLayout.render(SciquizLayout, {
-            content: <QuizPage _id={params._id} />
-        });
+        if (! Meteor.userId()) {
+            throw new Meteor.Error("not-authorized");
+        }else{
+            ReactLayout.render(SciquizLayout, {
+                content: <QuizPage _id={params._id} />
+            });
+        }
     }
 });
 
