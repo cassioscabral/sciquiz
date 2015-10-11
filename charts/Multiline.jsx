@@ -83,11 +83,12 @@ MultilineChart = React.createClass({
 
         stroke = 2;
         dataGroup.forEach(function(d, i) {
-
+            colors = ['rgb(92, 21, 224)', 'rgb(145, 231, 92)', 'rgb(190, 66, 181)', 'rgb(46, 199, 214)'];
+            color = colors[Math.floor(Math.random() * colors.length)];
             vis.append("text")
             .attr("x", (lSpace / 2) + i * lSpace)
             .attr("y", HEIGHT)
-            .style("fill", "black")
+            .style("fill", color)
             .style("cursor", "pointer")
             .attr("class", "legend")
             .text(d.key)
@@ -103,13 +104,13 @@ MultilineChart = React.createClass({
             vis.append('svg:path')
                 .attr('d', lineGen(d.values))
                 .attr('stroke', function(d, j) {
-                    return "hsl(" + Math.random() * 360 + ",100%,50%)";
+                    return color;
                 })
                 .attr('stroke-width', stroke)
                 .attr('id', 'line_' + d.key)
                 .attr('fill', 'none');
 
-            stroke += stroke + 1;
+            stroke += stroke + 0.5;
         });
     },
     render () {
