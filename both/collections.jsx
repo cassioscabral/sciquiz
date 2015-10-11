@@ -174,6 +174,4 @@ if(Meteor.isServer) {
             Questions.findOne(sex),
         ]
     });
-
->>>>>>> 1bf7792de042cf9b696c7620e10ecc0c520cbca0
 }
