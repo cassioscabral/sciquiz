@@ -12,14 +12,10 @@ HeaderComponent = React.createClass({
                 </button>
                 <nav id="left" role="navigation">
                     <ul id="menu">
-                        <li className="is-active"><a href="/">Home</a></li>
-                        <li><a href="/">About</a></li>
+                        <li><a href="/">Quizzes</a></li>
+                        <li><a href="/output">benefit research</a></li>
+                        <li><a href="/about">About</a></li>
                         <li><AccountsUIWrapper /></li>
-                    </ul>
-                </nav>
-                <nav id="right" role="navigation">
-                    <ul>
-                        <li><a href="#">Logout (UserName)</a></li>
                     </ul>
                 </nav>
             </header>
